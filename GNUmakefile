@@ -6,7 +6,8 @@ PROJECT   =c-chcase
 VERSION   =1.0.0
 EXE      ?=$(shell uname -s | awk '/Windows/ || /MSYS/ || /CYG/ { print ".exe" }')
 TPREFIX  ?=$(if $(EXE),x86_64-w64-mingw32-)
-CC        = $(TPREFIX)gcc -Wall -g3 -std=c99
+CC        =$(shell which $(TPREFIX)cc $(TPREFIX)gcc 2>/dev/null | head -n 1)
+CFLAGS    =-Wall -g3 -std=c99
 PROGS     = 
 PREFIX    =/usr/local
 BUILDDIR ?=.build
